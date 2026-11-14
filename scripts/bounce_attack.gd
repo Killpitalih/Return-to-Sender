@@ -100,3 +100,20 @@ func _on_area_entered(area: Area2D) -> void:
 	# Only count a successful reflection
 	if projectile.is_reflected:
 		reflected_this_attack = true
+
+
+func get_cooldown_progress() -> float:
+	if cooldown_timer.is_stopped():
+		return 1.0
+
+	var total_time: float = cooldown_timer.wait_time
+	var remaining_time: float = cooldown_timer.time_left
+
+	if total_time <= 0.0:
+		return 1.0
+
+	return clampf(
+		1.0 - remaining_time / total_time,
+		0.0,
+		1.0
+	)

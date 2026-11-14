@@ -947,5 +947,12 @@ animation = &"attack_up"
 
 [node name="BounceAttack" parent="." unique_id=1757434697 instance=ExtResource("4_lvxji")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1859974450]
-process_callback = 0
+[node name="CooldownBar" type="ProgressBar" parent="." unique_id=816509694]
+offset_left = -12.0
+offset_top = -23.0
+offset_right = 12.0
+offset_bottom = -18.0
+mouse_filter = 2
+max_value = 1.0
+value = 1.0
+show_percentage = false

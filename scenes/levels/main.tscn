@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b1bu3bji1uwff" path="res://scenes/player/player.tscn" id="1_72ix8"]
 [ext_resource type="PackedScene" uid="uid://cewpvkqp1lfl4" path="res://scenes/levels/room_01.tscn" id="2_2vj2h"]
 [ext_resource type="PackedScene" uid="uid://d25ng22y4f7b0" path="res://scenes/enemies/enemy.tscn" id="3_y0acb"]
+[ext_resource type="Script" uid="uid://b27v61xv3u5wx" path="res://scripts/pixel_camera.gd" id="4_j4d2a"]
 
 [node name="Main" type="Node2D" unique_id=571512117]
 
@@ -19,3 +20,8 @@ position = Vector2(112, 211)
 
 [node name="Enemy3" parent="." unique_id=1572717848 instance=ExtResource("3_y0acb")]
 position = Vector2(79, 222)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1443595396 node_paths=PackedStringArray("target")]
+process_callback = 0
+script = ExtResource("4_j4d2a")
+target = NodePath("../Player")

@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var bounce_attack: BounceAttack = $BounceAttack
+@onready var cooldown_bar: ProgressBar = $CooldownBar
 
 var facing_direction: Vector2 = Vector2.DOWN
 
@@ -141,3 +142,21 @@ func choose_facing_direction(direction: Vector2) -> Vector2:
 	# Default to vertical if changing from
 	# an unrelated direction
 	return vertical
+	
+	
+
+func _ready() -> void:
+	cooldown_bar.min_value = 0.0
+	cooldown_bar.max_value = 1.0
+	cooldown_bar.show_percentage = false
+	cooldown_bar.hide()
+
+
+func _process(_delta: float) -> void:
+	var progress: float = bounce_attack.get_cooldown_progress()
+
+	if progress >= 1.0:
+		cooldown_bar.hide()
+	else:
+		cooldown_bar.show()
+		cooldown_bar.value = progress
