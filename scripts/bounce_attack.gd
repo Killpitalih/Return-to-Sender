@@ -16,6 +16,7 @@ signal attack_finished
 
 var is_attacking: bool = false
 var aim_direction: Vector2 = Vector2.DOWN
+var reflected_this_attack: bool = false
 
 @onready var hitbox: CollisionShape2D = $CollisionShape2D
 @onready var active_timer: Timer = $ActiveTimer
@@ -51,6 +52,8 @@ func start_attack(target_position: Vector2) -> void:
 	rotation = aim_direction.angle()
 
 	# Activate attack
+	# Activate attack
+	reflected_this_attack = false
 	is_attacking = true
 	monitoring = true
 	hitbox.set_deferred("disabled", false)
@@ -71,10 +74,29 @@ func finish_attack() -> void:
 	attack_finished.emit()
 	
 
+
 func _on_area_entered(area: Area2D) -> void:
+	# Attack must be active
 	if not is_attacking:
 		return
 
-	if area is Projectile:
-		if not area.is_reflected:
-			area.bounce_toward(get_global_mouse_position())
+	# Already reflected one projectile?
+	if reflected_this_attack:
+		return
+
+	# Only interact with projectiles
+	var projectile := area as Projectile
+
+	if projectile == null:
+		return
+
+	# Don't reflect the same projectile twice
+	if projectile.is_reflected:
+		return
+
+	# Bounce projectile toward mouse
+	projectile.bounce_toward(get_global_mouse_position())
+
+	# Only count a successful reflection
+	if projectile.is_reflected:
+		reflected_this_attack = true

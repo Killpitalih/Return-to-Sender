@@ -24,7 +24,8 @@ func _physics_process(_delta: float) -> void:
 
 	# Remember last movement direction
 	if direction != Vector2.ZERO:
-		facing_direction = direction
+		facing_direction = choose_facing_direction(direction)
+		#facing_direction = direction
 
 	# Attack toward mouse cursor
 	if Input.is_action_just_pressed("bounce"):
@@ -104,3 +105,39 @@ func get_animation_name(
 		return action
 
 	return ""
+	
+
+func choose_facing_direction(direction: Vector2) -> Vector2:
+	var horizontal: Vector2
+
+	if direction.x > 0:
+		horizontal = Vector2.RIGHT
+	else:
+		horizontal = Vector2.LEFT
+
+	var vertical: Vector2
+
+	if direction.y > 0:
+		vertical = Vector2.DOWN
+	else:
+		vertical = Vector2.UP
+
+	# Only moving vertically
+	if is_zero_approx(direction.x):
+		return vertical
+
+	# Only moving horizontally
+	if is_zero_approx(direction.y):
+		return horizontal
+
+	# Moving diagonally:
+	# Keep facing the previous direction if possible
+	if facing_direction == horizontal:
+		return horizontal
+
+	if facing_direction == vertical:
+		return vertical
+
+	# Default to vertical if changing from
+	# an unrelated direction
+	return vertical

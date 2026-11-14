@@ -948,3 +948,4 @@ animation = &"attack_up"
 [node name="BounceAttack" parent="." unique_id=1757434697 instance=ExtResource("4_lvxji")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1859974450]
+process_callback = 0
