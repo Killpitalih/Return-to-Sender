@@ -1,0 +1,94 @@
+[gd_scene format=4 uid="uid://y50lcsveafts"]
+
+[ext_resource type="Texture2D" uid="uid://dx1qwksnprhs6" path="res://art/water_animated_tileset.png" id="1_c5ghu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sw8xa"]
+texture = ExtResource("1_c5ghu")
+0:0/animation_columns = 3
+0:0/animation_speed = 2.5
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 0.8992939, -8, -1.2590103, -0.5395756, -8, -1.4388695)
+0:1/animation_columns = 3
+0:1/animation_speed = 2.5
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/0 = 0
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -0.17985725, -1.2590103, 2.1583061, 0.5395756, 8, -8, 8)
+0:2/animation_columns = 3
+0:2/animation_speed = 2.5
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/0 = 0
+0:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/animation_columns = 3
+0:3/animation_speed = 2.5
+0:3/animation_frame_0/duration = 1.0
+0:3/animation_frame_1/duration = 1.0
+0:3/0 = 0
+0:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/animation_columns = 3
+0:4/animation_speed = 2.5
+0:4/animation_frame_0/duration = 1.0
+0:4/animation_frame_1/duration = 1.0
+0:4/0 = 0
+0:4/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/animation_columns = 3
+0:5/animation_speed = 2.5
+0:5/animation_frame_0/duration = 1.0
+0:5/animation_frame_1/duration = 1.0
+0:5/0 = 0
+0:5/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:6/animation_columns = 3
+0:6/animation_speed = 2.5
+0:6/animation_frame_0/duration = 1.0
+0:6/animation_frame_1/duration = 1.0
+0:6/0 = 0
+0:6/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:7/animation_columns = 3
+0:7/animation_speed = 2.5
+0:7/animation_frame_0/duration = 1.0
+0:7/animation_frame_1/duration = 1.0
+0:7/0 = 0
+0:7/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:8/animation_columns = 3
+0:8/animation_speed = 2.5
+0:8/animation_frame_0/duration = 1.0
+0:8/animation_frame_1/duration = 1.0
+0:8/0 = 0
+0:8/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:9/animation_columns = 3
+0:9/animation_speed = 2.5
+0:9/animation_frame_0/duration = 1.0
+0:9/animation_frame_1/duration = 1.0
+0:9/0 = 0
+0:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:10/animation_columns = 3
+0:10/animation_speed = 2.5
+0:10/animation_frame_0/duration = 1.0
+0:10/animation_frame_1/duration = 1.0
+0:10/0 = 0
+0:10/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:11/animation_columns = 3
+0:11/animation_speed = 2.5
+0:11/animation_frame_0/duration = 1.0
+0:11/animation_frame_1/duration = 1.0
+0:11/0 = 0
+0:11/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:12/animation_columns = 3
+0:12/animation_speed = 2.5
+0:12/animation_frame_0/duration = 1.0
+0:12/animation_frame_1/duration = 1.0
+0:12/0 = 0
+0:12/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_5buia"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 16
+sources/0 = SubResource("TileSetAtlasSource_sw8xa")
+
+[node name="Water" type="TileMapLayer" unique_id=671665547]
+z_index = -1
+tile_map_data = PackedByteArray("AAAIAAsAAAAAAAIAAAAJAAsAAAAAAAsAAAAKAAsAAAAAAAsAAAAJAA0AAAAAAAQAAAAJAAwAAAAAAAQAAAAKAAwAAAAAAAQAAAAKAA4AAAAAAAQAAAAKAA0AAAAAAAQAAAALAAsAAAAAAAEAAAALAAwAAAAAAAgAAAALAA0AAAAAAAgAAAALAA4AAAAAAAgAAAAKAA8AAAAAAAYAAAALAA8AAAAAAAAAAAAJAA8AAAAAAAMAAAAJAA4AAAAAAAcAAAAIAA4AAAAAAAMAAAAIAAwAAAAAAAkAAAAIAA0AAAAAAAkAAAA=")
+tile_set = SubResource("TileSet_5buia")

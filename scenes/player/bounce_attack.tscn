@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d33ktq2evf6lm"]
+
+[ext_resource type="Script" uid="uid://lb5k68w75e8m" path="res://scripts/bounce_attack.gd" id="1_ywic0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5buia"]
+radius = 16.0
+
+[node name="BounceAttack" type="Area2D" unique_id=1757434697]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ywic0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1528187583]
+shape = SubResource("CircleShape2D_5buia")
+
+[node name="ActiveTimer" type="Timer" parent="." unique_id=455669985]
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=529493701]
