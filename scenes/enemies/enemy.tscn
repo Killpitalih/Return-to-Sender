@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cxsptrbce55wr" path="res://enemy.gd" id="1_8e3ao"]
 [ext_resource type="Texture2D" uid="uid://bstfhvg0cftpi" path="res://art/Enemies/lizardfolk_16x32_sheet.png" id="2_38ino"]
 [ext_resource type="PackedScene" uid="uid://bukx7wlb4vw05" path="res://scenes/projectiles/projectile.tscn" id="2_fcftc"]
+[ext_resource type="AudioStream" uid="uid://dqry2r6h7gyst" path="res://audio/sfx/second_enemy_attack.wav" id="2_nb6gf"]
+[ext_resource type="AudioStream" uid="uid://cmgrh4c00yvw4" path="res://audio/sfx/enemy_hit.wav" id="3_jt03m"]
+[ext_resource type="AudioStream" uid="uid://41mk53sq7en7" path="res://audio/sfx/enemy_death.ogg" id="4_n7575"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcftc"]
 atlas = ExtResource("2_38ino")
@@ -730,6 +733,9 @@ size = Vector2(7, 14.5)
 z_index = -1
 collision_mask = 17
 script = ExtResource("1_8e3ao")
+shoot_sfx = ExtResource("2_nb6gf")
+hit_sfx = ExtResource("3_jt03m")
+death_sfx = ExtResource("4_n7575")
 projectile_scene = ExtResource("2_fcftc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=867839549]

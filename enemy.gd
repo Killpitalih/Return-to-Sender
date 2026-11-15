@@ -2,6 +2,14 @@
 extends CharacterBody2D
 class_name Enemy
 
+
+@export_group("Enemy Sounds")
+
+@export var shoot_sfx: AudioStream
+@export var hit_sfx: AudioStream
+@export var death_sfx: AudioStream
+
+
 # --- ENEMY SETTINGS ---
 
 @export var max_health: int = 2
@@ -15,6 +23,9 @@ class_name Enemy
 
 @export var projectile_scene: PackedScene
 @export var projectile_speed: float = 90.0
+
+@export var triple_shot: bool = false
+@export var spread_angle_degrees: float = 45.0
 
 
 # --- NODE REFERENCES ---
@@ -171,14 +182,16 @@ func get_dodge_direction() -> Vector2:
 
 # --- SHOOTING ---
 
+
 func shoot() -> void:
 	if is_dead or is_hurt:
 		return
+
 	if not is_instance_valid(player):
 		return
 
 	if projectile_scene == null:
-		push_warning("Assign projectile.tscn to the Enemy!")
+		push_warning("Enemy has no projectile scene assigned!")
 		return
 
 	var to_player: Vector2 = player.global_position - global_position
@@ -189,26 +202,45 @@ func shoot() -> void:
 	if to_player.length_squared() < 1.0:
 		return
 
+	# Aim at the player's current position
 	facing_direction = to_player.normalized()
 
+	if triple_shot:
+		# Left spread, center, right spread
+		spawn_projectile(-spread_angle_degrees)
+		spawn_projectile(0.0)
+		spawn_projectile(spread_angle_degrees)
+	else:
+		# Original enemy: just one projectile
+		spawn_projectile(0.0)
+
+	play_attack_animation()
+	AudioManager.play_sfx(shoot_sfx, -6.0)
+
+
+func spawn_projectile(angle_degrees: float) -> void:
 	var projectile := projectile_scene.instantiate() as Projectile
 
 	if projectile == null:
-		push_warning("Projectile scene must use Projectile script")
+		push_warning("Projectile scene needs projectile.gd!")
 		return
 
-	projectile.starting_direction = facing_direction
+	# Rotate the firing direction
+	var shot_direction: Vector2 = facing_direction.rotated(
+		deg_to_rad(angle_degrees)
+	).normalized()
+
+	# Set projectile properties before adding to scene
+	projectile.starting_direction = shot_direction
 	projectile.speed = projectile_speed
 
 	get_tree().current_scene.add_child(projectile)
 
+	# All three projectiles emerge from the same firing point
 	projectile.global_position = (
 		global_position + facing_direction * 24.0
 	)
 
-	print("Enemy fired!")
-
-	play_attack_animation()
 
 
 # --- HEALTH ---
@@ -227,6 +259,7 @@ func take_damage(amount: int) -> void:
 
 
 func play_hit_animation() -> void:
+	AudioManager.play_sfx(hit_sfx)
 	is_hurt = true
 	showing_attack_animation = false
 
@@ -243,6 +276,7 @@ func play_hit_animation() -> void:
 
 
 func die() -> void:
+	AudioManager.play_sfx(death_sfx)
 	is_dead = true
 	is_hurt = false
 	showing_attack_animation = false

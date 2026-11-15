@@ -5,6 +5,8 @@ class_name BounceAttack
 signal attack_started
 signal attack_finished
 
+@export var bounce_sfx: AudioStream
+
 # How long the attack can reflect projectiles
 @export var active_time: float = 0.6
 
@@ -100,6 +102,7 @@ func _on_area_entered(area: Area2D) -> void:
 	# Only count a successful reflection
 	if projectile.is_reflected:
 		reflected_this_attack = true
+		AudioManager.play_sfx(bounce_sfx)
 
 
 func get_cooldown_progress() -> float:
@@ -117,3 +120,11 @@ func get_cooldown_progress() -> float:
 		0.0,
 		1.0
 	)
+	
+
+func cancel_attack() -> void:
+	if not is_attacking:
+		return
+
+	active_timer.stop()
+	finish_attack()
