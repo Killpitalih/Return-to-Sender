@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Enemy
 
 signal died
+signal health_changed(current_health: int, maximum_health: int)
 
 @export_group("Enemy Sounds")
 
@@ -251,6 +252,7 @@ func take_damage(amount: int) -> void:
 		return
 
 	health -= amount
+	health_changed.emit(maxi(health, 0), max_health)
 	print("Enemy health: ", health)
 
 	if health <= 0:

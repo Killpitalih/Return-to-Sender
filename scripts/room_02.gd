@@ -2,6 +2,7 @@
 extends Node2D
 
 signal exit_entered(next_room: String)
+signal arena_enemies_changed(remaining: int)
 
 @export_file("*.tscn") var next_room: String = ""
 
@@ -64,6 +65,7 @@ func _on_room_entered(body: Node2D) -> void:
 
 	# Close the entrance behind the player
 	entrance_door.close_door()
+	arena_enemies_changed.emit(enemies_remaining)
 
 	print("Battle started!")
 
@@ -76,6 +78,8 @@ func _on_room_entered(body: Node2D) -> void:
 
 func _on_enemy_exiting(enemy: Node2D) -> void:
 	enemies_remaining -= 1
+	if battle_started:
+		arena_enemies_changed.emit(enemies_remaining)
 
 	print("Enemies remaining: ", enemies_remaining)
 
@@ -116,6 +120,7 @@ func _spawn_key(drop_position: Vector2) -> void:
 
 func _on_key_collected() -> void:
 	exit_door.open_door()
+	arena_enemies_changed.emit(-1)
 
 	print("Key collected! Exit opened!")
 

@@ -36,6 +36,11 @@ func _ready() -> void:
 
 
 func _connect_room() -> void:
+	$HUD.show_enemy_count(-1)
+	if current_room.has_signal("arena_enemies_changed"):
+		current_room.connect("arena_enemies_changed", $HUD.show_enemy_count)
+	if current_room.has_signal("boss_health_changed"):
+		current_room.connect("boss_health_changed", $HUD.show_boss_health)
 	if current_room.has_signal("exit_entered"):
 		current_room.connect("exit_entered", _change_room)
 	if current_room.has_signal("game_completed"):

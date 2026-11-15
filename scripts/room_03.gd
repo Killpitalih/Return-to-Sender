@@ -2,6 +2,7 @@ extends Node2D
 
 signal arena_entered(player: Node2D)
 signal game_completed
+signal boss_health_changed(current_health: int, maximum_health: int)
 
 @export var boss: Enemy
 @export var boss_music: AudioStream = preload("res://audio/music/boss_fight.mp3")
@@ -16,6 +17,12 @@ func _ready() -> void:
 	arena_trigger.body_entered.connect(_on_arena_entered)
 	if is_instance_valid(boss):
 		boss.died.connect(_on_boss_died, CONNECT_ONE_SHOT)
+		boss.health_changed.connect(_on_boss_health_changed)
+
+
+func _on_boss_health_changed(current_health: int, maximum_health: int) -> void:
+	if arena_started:
+		boss_health_changed.emit(current_health, maximum_health)
 
 
 func _on_boss_died() -> void:
@@ -31,6 +38,8 @@ func _on_arena_entered(body: Node2D) -> void:
 	arena_started = true
 	arena_entrance.close_door()
 	AudioManager.play_music(boss_music)
+	if is_instance_valid(boss):
+		boss_health_changed.emit(maxi(boss.health, 0), boss.max_health)
 	arena_entered.emit(body)
 
 

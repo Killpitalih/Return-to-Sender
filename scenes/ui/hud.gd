@@ -5,6 +5,11 @@ extends CanvasLayer
 @export var empty_heart: Texture2D
 
 @onready var hearts: HBoxContainer = $Hearts
+@onready var encounter_progress: Control = $EncounterProgress
+@onready var encounter_bar: ProgressBar = $EncounterProgress/Bar
+
+var progress_tween: Tween
+var arena_enemy_total: int = 0
 
 
 func _ready() -> void:
@@ -26,6 +31,35 @@ func _ready() -> void:
 
 	# Draw the starting HP
 	update_hearts(health.current_health, health.max_health)
+
+
+func show_enemy_count(remaining: int) -> void:
+	if remaining < 0:
+		encounter_progress.hide()
+		arena_enemy_total = 0
+		if progress_tween != null:
+			progress_tween.kill()
+		return
+	if not encounter_progress.visible:
+		arena_enemy_total = maxi(remaining, 1)
+	_show_progress(remaining, arena_enemy_total)
+
+
+func show_boss_health(current: int, maximum: int) -> void:
+	_show_progress(current, maximum)
+
+
+func _show_progress(current: int, maximum: int) -> void:
+	encounter_bar.max_value = maxi(maximum, 1)
+	var target := clampi(current, 0, maxi(maximum, 1))
+	if progress_tween != null:
+		progress_tween.kill()
+	if not encounter_progress.visible:
+		encounter_bar.value = target
+		encounter_progress.show()
+	else:
+		progress_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		progress_tween.tween_property(encounter_bar, "value", float(target), 0.18)
 
 
 func update_hearts(current: int, maximum: int) -> void:
