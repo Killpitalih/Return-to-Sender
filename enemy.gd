@@ -2,6 +2,7 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal died
 
 @export_group("Enemy Sounds")
 
@@ -290,6 +291,7 @@ func die() -> void:
 	collision_layer = 0
 	collision_mask = 0
 	$CollisionShape2D.set_deferred("disabled", true)
+	died.emit()
 
 	var animation_name := find_animation("death")
 

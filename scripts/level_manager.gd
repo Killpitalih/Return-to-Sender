@@ -6,6 +6,7 @@ var fade: ColorRect
 
 
 func _ready() -> void:
+	AudioManager.play_music(preload("res://audio/music/background.mp3"))
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	current_room = $Room01
 	_connect_room()
@@ -37,6 +38,28 @@ func _ready() -> void:
 func _connect_room() -> void:
 	if current_room.has_signal("exit_entered"):
 		current_room.connect("exit_entered", _change_room)
+	if current_room.has_signal("game_completed"):
+		current_room.connect("game_completed", _finish_game)
+
+
+func _finish_game() -> void:
+	if transitioning:
+		return
+	transitioning = true
+	$Player.velocity = Vector2.ZERO
+	$Player._stop_footsteps()
+	get_tree().paused = true
+	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(fade, "color:a", 1.0, 0.5)
+	await tween.finished
+	get_tree().paused = false
+	var error := get_tree().change_scene_to_file("res://scenes/ui/ending.tscn")
+	if error != OK:
+		push_error("Unable to show ending: " + error_string(error))
+		tween = create_tween()
+		tween.tween_property(fade, "color:a", 0.0, 0.3)
+		await tween.finished
+		transitioning = false
 
 
 func _change_room(path: String) -> void:

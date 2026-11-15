@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgfa002wqdsqc"]
 
 [ext_resource type="PackedScene" uid="uid://d25ng22y4f7b0" path="res://scenes/enemies/enemy.tscn" id="1_h5glh"]
-[ext_resource type="PackedScene" uid="uid://c0a6djti0safn" path="res://scenes/projectiles/projectile_loop.tscn" id="2_7n7pj"]
+[ext_resource type="PackedScene" uid="uid://ck4d5nqxkh72m" path="res://scenes/enemies/projectile_loop_miner.tscn" id="2_7n7pj"]
 [ext_resource type="Texture2D" uid="uid://cnwj5k7jb5r51" path="res://art/Enemies/kobold_miner_16x16_sheet.png" id="2_b6l1h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6l1h"]
@@ -728,7 +728,7 @@ projectile_scene = ExtResource("2_7n7pj")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=867839549]
 sprite_frames = SubResource("SpriteFrames_b6l1h")
-animation = &"death_left"
+animation = &"attack_left"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=137146074]
 position = Vector2(0, 2)

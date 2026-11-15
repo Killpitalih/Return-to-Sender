@@ -16,6 +16,8 @@ var is_dead: bool = false
 
 
 func _ready() -> void:
+	max_health = int(get_tree().get_meta("player_max_health", max_health))
+	#max_health = 1000 # debug
 	current_health = max_health
 
 	invulnerability_timer.one_shot = true

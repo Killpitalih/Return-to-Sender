@@ -3375,9 +3375,10 @@ size = Vector2(10, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl662"]
 size = Vector2(96, 24)
 
-[node name="Room03" type="Node2D" unique_id=775305749]
+[node name="Room03" type="Node2D" unique_id=775305749 node_paths=PackedStringArray("boss")]
 texture_filter = 1
 script = ExtResource("1_a0vbn")
+boss = NodePath("Enemy12")
 
 [node name="SnowIceAndPath" type="TileMapLayer" parent="." unique_id=906338019]
 z_index = -3

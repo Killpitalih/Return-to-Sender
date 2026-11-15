@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cafmj5bg721u6"]
+
+[ext_resource type="PackedScene" uid="uid://bq2thm3pgguqp" path="res://scenes/ui/main_menu.tscn" id="1_menu"]
+[ext_resource type="Script" uid="uid://di40r6dc7x5gx" path="res://scenes/ui/ending.gd" id="2_ending"]
+
+[node name="Ending" unique_id=1376872753 instance=ExtResource("1_menu")]
+script = ExtResource("2_ending")
+
+[node name="Title" parent="Center/Menu" parent_id_path=PackedInt32Array(570535868) index="0" unique_id=1429455484]
+text = "The End"
+
+[node name="Message" type="Label" parent="Center/Menu" parent_id_path=PackedInt32Array(570535868) index="1" unique_id=1906352609]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.95, 0.84, 1)
+theme_override_font_sizes/font_size = 12
+text = "Thank you for playing!
+Your journey is complete."
+horizontal_alignment = 1
+
+[node name="Play" parent="Center/Menu" parent_id_path=PackedInt32Array(570535868) index="3" unique_id=234360800]
+text = "Main Menu"
+
+[node name="HowToPlay" parent="Center/Menu" parent_id_path=PackedInt32Array(570535868) index="4" unique_id=2094938723]
+visible = false
+
+[node name="Credits" parent="." index="2" unique_id=211856982]
+offset_top = -17.0
+offset_bottom = -1.0
+text = ""

@@ -85,6 +85,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Play"
 
+[node name="HowToPlay" type="Button" parent="Center/Menu" unique_id=2094938723]
+custom_minimum_size = Vector2(128, 26)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "How to Play"
+
 [node name="Exit" type="Button" parent="Center/Menu" unique_id=1638780964]
 custom_minimum_size = Vector2(128, 26)
 layout_mode = 2
@@ -106,3 +112,121 @@ theme_override_font_sizes/font_size = 10
 text = "By Andrei and Kiryl"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DifficultyCenter" type="CenterContainer" parent="." unique_id=2138681390]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Choices" type="VBoxContainer" parent="DifficultyCenter" unique_id=1012374753]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="DifficultyCenter/Choices" unique_id=1576429691]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.92, 0.68, 1)
+theme_override_font_sizes/font_size = 20
+text = "Choose Difficulty"
+horizontal_alignment = 1
+
+[node name="Insane" type="Button" parent="DifficultyCenter/Choices" unique_id=124191518]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Insane - 1 HP"
+
+[node name="Hard" type="Button" parent="DifficultyCenter/Choices" unique_id=1697235391]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hard - 3 HP"
+
+[node name="Medium" type="Button" parent="DifficultyCenter/Choices" unique_id=1410831864]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Medium - 5 HP"
+
+[node name="Easy" type="Button" parent="DifficultyCenter/Choices" unique_id=672958937]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Easy - 10 HP"
+
+[node name="Back" type="Button" parent="DifficultyCenter/Choices" unique_id=1123852380]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="Instructions" type="Control" parent="." unique_id=1052506737]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Instructions" unique_id=627857711]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Center" type="CenterContainer" parent="Instructions" unique_id=1470832399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Instructions/Center" unique_id=128543302]
+custom_minimum_size = Vector2(292, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("ButtonNormal")
+
+[node name="Margin" type="MarginContainer" parent="Instructions/Center/Panel" unique_id=471309278]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="VBoxContainer" parent="Instructions/Center/Panel/Margin" unique_id=699936727]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Instructions/Center/Panel/Margin/Content" unique_id=1301259214]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.92, 0.68, 1)
+theme_override_font_sizes/font_size = 18
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="Instructions/Center/Panel/Margin/Content" unique_id=2146236741]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.95, 0.84, 1)
+theme_override_font_sizes/font_size = 10
+text = "You cannot damage enemies directly.
+Bounce their projectiles back to defeat them!
+
+WASD: move   |   Mouse: aim
+Left click or Space: reflect a nearby projectile.
+Time your reflection, then wait for the cooldown."
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="Instructions/Center/Panel/Margin/Content" unique_id=974686595]
+custom_minimum_size = Vector2(128, 22)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Got it"
