@@ -5,7 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://gdb5eqkwab1k" path="res://scenes/levels/room_02.tscn" id="4_u81e1"]
 [ext_resource type="PackedScene" uid="uid://n5klh4d5qckk" path="res://scenes/ui/hud.tscn" id="6_b6bv0"]
 
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="7_level_manager"]
+
 [node name="Main" type="Node2D" unique_id=571512117]
+script = ExtResource("7_level_manager")
 
 [node name="Player" parent="." unique_id=1476364302 instance=ExtResource("1_72ix8")]
 position = Vector2(160, 90)

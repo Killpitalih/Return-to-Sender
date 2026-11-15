@@ -24,6 +24,7 @@ size = Vector2(63, 37)
 
 [node name="Room01" type="Node2D" unique_id=1317932434]
 script = ExtResource("1_euomc")
+next_room = "res://scenes/levels/room_03.tscn"
 key_scene = ExtResource("2_euomc")
 
 [node name="Ground" parent="." unique_id=1960864704 instance=ExtResource("1_nnkic")]
